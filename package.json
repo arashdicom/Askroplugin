@@ -1,0 +1,84 @@
+{
+  "name": "askro-plugin",
+  "version": "1.0.0",
+  "description": "Advanced Q&A plugin for WordPress with gamification and community features",
+  "main": "askro.php",
+  "scripts": {
+    "dev": "npm run build:css:watch & npm run build:js:watch",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.min.css --minify",
+    "build:css:watch": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/dist/main.min.css --watch",
+    "build:js": "webpack --mode=production",
+    "build:js:watch": "webpack --mode=development --watch",
+    "build:js:dev": "webpack --mode=development",
+    "lint:css": "stylelint 'assets/css/src/**/*.css'",
+    "lint:js": "eslint 'assets/js/src/**/*.js'",
+    "format:css": "prettier --write 'assets/css/src/**/*.css'",
+    "format:js": "prettier --write 'assets/js/src/**/*.js'",
+    "test": "phpunit",
+    "test:coverage": "phpunit --coverage-html coverage",
+    "zip": "npm run build && zip -r askro-plugin.zip . -x 'node_modules/*' 'tests/*' 'coverage/*' '.git/*' '*.log' 'package-lock.json' 'yarn.lock'"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "qa",
+    "questions",
+    "answers",
+    "community",
+    "gamification"
+  ],
+  "author": {
+    "name": "Arashdi",
+    "email": "arashdi@wratcliff.dev",
+    "url": "https://arashdi.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arashdi/askro-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arashdi/askro-plugin/issues"
+  },
+  "homepage": "https://arashdi.com/askro-plugin",
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.18",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "mini-css-extract-plugin": "^2.8.1",
+    "postcss": "^8.4.35",
+    "postcss-loader": "^8.1.0",
+    "prettier": "^3.2.5",
+    "style-loader": "^3.3.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "tailwindcss": "^3.4.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "config": {
+    "unsafe-perm": true
+  }
+}
+

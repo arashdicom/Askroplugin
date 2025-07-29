@@ -1,0 +1,114 @@
+{
+    "table_name": "wp_askro_points_log",
+    "backup_time": "2025-07-27 21:15:11",
+    "structure": [
+        {
+            "Field": "id",
+            "Type": "bigint unsigned",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "user_id",
+            "Type": "bigint unsigned",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "source_user_id",
+            "Type": "bigint unsigned",
+            "Null": "YES",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "points_change",
+            "Type": "int",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "reason_key",
+            "Type": "varchar(100)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "related_type",
+            "Type": "enum('answer','question','vote','comment','achievement','system','badge','quest')",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "related_id",
+            "Type": "bigint unsigned",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "context",
+            "Type": "json",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "created_at",
+            "Type": "datetime",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED"
+        }
+    ],
+    "data": [
+        {
+            "id": "1",
+            "user_id": "1",
+            "source_user_id": null,
+            "points_change": "5",
+            "reason_key": "add_comment",
+            "related_type": "comment",
+            "related_id": "1",
+            "context": null,
+            "created_at": "2025-07-27 00:24:56"
+        },
+        {
+            "id": "2",
+            "user_id": "1",
+            "source_user_id": null,
+            "points_change": "5",
+            "reason_key": "achievement_unlocked",
+            "related_type": "achievement",
+            "related_id": "1",
+            "context": null,
+            "created_at": "2025-07-27 00:24:56"
+        },
+        {
+            "id": "3",
+            "user_id": "1",
+            "source_user_id": null,
+            "points_change": "30",
+            "reason_key": "achievement_unlocked",
+            "related_type": "achievement",
+            "related_id": "3",
+            "context": null,
+            "created_at": "2025-07-27 00:24:56"
+        }
+    ],
+    "row_count": 3
+}
