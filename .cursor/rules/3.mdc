@@ -1,0 +1,171 @@
+---
+description:3
+globs:
+alwaysApply: true
+---
+AskMe Project - The Definitive "Shortcode-First" Architecture Blueprint
+
+Document Version: 5.0 (Shortcode-First Mandate)
+Project: "AskMe" - The 2025 Next-Generation Q&A Platform
+Author: Al-Rashidi Center
+Official Website: https://arashdi.com
+Target Plugin Version: V.5
+1.0 Core Architectural Mandate: A "Shortcode-First" Philosophy
+
+Goal: To architect the "AskMe" plugin as a suite of powerful, self-contained shortcodes. The plugin will not create or control any pages automatically. All frontend functionality will be rendered exclusively through shortcodes that the administrator places on pages of their choosing.
+
+1.1. Key Principles:
+
+    No Automatic Page Creation: The plugin must not programmatically create any pages upon activation.
+
+    No Custom Rewrite Rules: The plugin will not register its own rewrite rules for custom URLs like /questions/ or /profile/. It will rely entirely on the permalinks of the pages where the shortcodes are placed.
+
+    Total Admin Control: The site administrator has 100% control over where each feature appears and what its URL is.
+
+    Dynamic Page Awareness: The plugin must be intelligent enough to know which page it is on. The "Dynamic Page Settings" in the admin dashboard (where the admin assigns pages to functions) becomes the single source of truth for all internal URL generation.
+
+2.0 The Comprehensive Shortcode Library
+
+Goal: To create a complete library of shortcodes that exposes every single feature of the "AskMe" platform, allowing for ultimate flexibility.
+
+2.1. Core Page Shortcodes (The "Container" Shortcodes)
+
+    Description: These are the main shortcodes that render the primary, full-page experiences. The administrator will create a WordPress page and place one of these shortcodes on it.
+
+    2.1.1. [askme_archive]
+
+        Purpose: Renders the entire "Questions Archive" experience.
+
+        Renders:
+
+            The full, immersive, two-column layout (70% content, 30% sidebar).
+
+            The interactive toolbar (Sorting, Filtering, Search).
+
+            The list of Advanced Question Cards.
+
+            The dynamic sidebar with all its relevant modules (Community Stats, Leaderboard, etc.).
+
+        Attributes:
+
+            questions_per_page="15": Controls pagination.
+
+            default_sort="latest": Sets the initial sort order (latest, most_voted, most_answered).
+
+    2.1.2. [askme_ask_question_form]
+
+        Purpose: Renders the complete "Ask a Question" form.
+
+        Renders:
+
+            The full, immersive layout.
+
+            The advanced form, including the Pre-question Assistant, custom editor, and interactive image uploader.
+
+            The dynamic sidebar with relevant modules (e.g., "Tips for Asking a Good Question").
+
+    2.1.3. [askme_user_profile]
+
+        Purpose: Renders the user profile page. This shortcode is intelligent.
+
+        Logic:
+
+            If placed on a page like /profile/, it will automatically detect a username in the URL (e.g., /profile/sarah) and display that user's profile.
+
+            If no username is in the URL, it will display the profile of the currently logged-in user.
+
+        Renders:
+
+            The full, immersive layout.
+
+            The complete profile header (avatar, stats, badges).
+
+            The full tabbed interface (Questions, Answers, Statistics with charts, Achievements, Missions).
+
+        Attributes:
+
+            user_id="123" or username="sarah": Allows an admin to display a specific user's profile on any page, overriding the URL detection.
+
+    2.1.4. [askme_single_question]
+
+        Purpose: This is a special case. The plugin will automatically render the single question content on the page assigned as the "Main Questions Archive" when a question's permalink is visited. This shortcode is for advanced use cases where an admin might want to embed a specific question elsewhere.
+
+        Attributes:
+
+            id="123": The ID of the question to display.
+
+2.2. Component & Data Shortcodes (The "Widget" Shortcodes)
+
+    Description: These are smaller, more focused shortcodes that can be placed anywhere on the site (e.g., on the homepage, in a blog post, or in a theme's widget area) to display specific pieces of data. These shortcodes do not render the full two-column layout.
+
+    2.2.1. [askme_questions_list]
+
+        Purpose: Renders a simple, clean list of questions.
+
+        Renders: A <ul> or <div> list of linked question titles.
+
+        Attributes:
+
+            limit="5": Number of questions to show.
+
+            status="urgent": Filter by a specific status.
+
+            category="programming": Filter by a category slug.
+
+            tags="javascript,react": Filter by one or more tags.
+
+            orderby="votes": Sort the list (date, votes, views, answers).
+
+            author="current" or author="123": Show questions by the current logged-in user or a specific user ID.
+
+    2.2.2. [askme_leaderboard]
+
+        Purpose: Renders a leaderboard of top users.
+
+        Renders: A list of users with their avatar, name, and total XP score.
+
+        Attributes:
+
+            limit="10": Number of users to display.
+
+            timeframe="weekly" or "all_time": To show the top users for the week or overall.
+
+    2.2.3. [askme_user_stat]
+
+        Purpose: Displays a single statistic for a specific user.
+
+        Renders: A single number or piece of text.
+
+        Attributes:
+
+            user="current" or user="123": The user to get the stat for.
+
+            stat="xp_total": The statistic to display (xp_total, rank_name, question_count, best_answer_count).
+
+            Example: Welcome back, [askme_user_stat user="current" stat="rank_name"]! would render "Welcome back, Expert!".
+
+    2.2.4. [askme_community_stat]
+
+        Purpose: Displays a single statistic for the entire community.
+
+        Renders: A single number.
+
+        Attributes:
+
+            stat="total_questions": The statistic to display (total_questions, total_answers, total_users, total_solved).
+
+3.0 The Role of the "Page Settings" in the Admin Dashboard
+
+Goal: To make this "Shortcode-First" system work seamlessly.
+
+    The Single Source of Truth: The "Page Assignments" section in the admin settings is now more critical than ever.
+
+    How it Works:
+
+        The admin creates a page, for example, /community/ask/, and places the [askme_ask_question_form] shortcode on it.
+
+        In the "AskMe" settings, they go to "Page Assignments" and select the /community/ask/ page from the "Ask a Question" Page dropdown.
+
+        Now, whenever the plugin needs to generate a link to the "Ask a Question" page anywhere in the UI, it will call the askme_get_url('ask_question') helper function. This function will look up the saved page ID (from the settings) and return the correct permalink (/community/ask/).
+
+    Conclusion: This system provides complete flexibility. The admin controls the URLs and page structure, and the plugin intelligently uses their choices to build all its internal links, ensuring nothing is ever broken or hardcoded.

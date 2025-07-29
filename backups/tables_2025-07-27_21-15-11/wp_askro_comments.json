@@ -1,0 +1,158 @@
+{
+    "table_name": "wp_askro_comments",
+    "backup_time": "2025-07-27 21:15:11",
+    "structure": [
+        {
+            "Field": "id",
+            "Type": "bigint unsigned",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "post_id",
+            "Type": "bigint unsigned",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "user_id",
+            "Type": "bigint unsigned",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "parent_id",
+            "Type": "bigint unsigned",
+            "Null": "YES",
+            "Key": "MUL",
+            "Default": "0",
+            "Extra": ""
+        },
+        {
+            "Field": "content",
+            "Type": "longtext",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "author_name",
+            "Type": "varchar(255)",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "author_email",
+            "Type": "varchar(255)",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "status",
+            "Type": "enum('approved','pending','spam','trash')",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": "approved",
+            "Extra": ""
+        },
+        {
+            "Field": "vote_score",
+            "Type": "int",
+            "Null": "NO",
+            "Key": "",
+            "Default": "0",
+            "Extra": ""
+        },
+        {
+            "Field": "meta",
+            "Type": "json",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "created_at",
+            "Type": "datetime",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED"
+        },
+        {
+            "Field": "updated_at",
+            "Type": "datetime",
+            "Null": "NO",
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "answer_id",
+            "Type": "bigint unsigned",
+            "Null": "YES",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        }
+    ],
+    "data": [
+        {
+            "id": "1",
+            "post_id": "123",
+            "user_id": "1",
+            "parent_id": "0",
+            "content": "لثصثلثصل",
+            "author_name": "Anonymous User",
+            "author_email": null,
+            "status": "approved",
+            "vote_score": "0",
+            "meta": null,
+            "created_at": "2025-07-27 00:24:56",
+            "updated_at": "2025-07-27 21:05:54",
+            "answer_id": null
+        },
+        {
+            "id": "3",
+            "post_id": "48",
+            "user_id": "1",
+            "parent_id": "0",
+            "content": "This is a test comment for debugging purposes.",
+            "author_name": "Anonymous User",
+            "author_email": null,
+            "status": "approved",
+            "vote_score": "0",
+            "meta": null,
+            "created_at": "2025-07-27 16:13:16",
+            "updated_at": "2025-07-27 21:05:54",
+            "answer_id": "48"
+        },
+        {
+            "id": "4",
+            "post_id": "48",
+            "user_id": "1",
+            "parent_id": "2",
+            "content": "This is a test comment for debugging purposes.",
+            "author_name": "Anonymous User",
+            "author_email": null,
+            "status": "approved",
+            "vote_score": "0",
+            "meta": null,
+            "created_at": "2025-07-27 16:13:20",
+            "updated_at": "2025-07-27 21:05:54",
+            "answer_id": "48"
+        }
+    ],
+    "row_count": 3
+}
